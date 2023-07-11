@@ -81,6 +81,8 @@ func (s *GormStore) Create(todo *Todo) error {
    - gin.HandlerFunc จะคลอบ MyHandlerFunc
    - MyContext จะคลอบ *gin.Context
 6. The test easier a bit
+
+*** ให้ Design interface ไปไว้ฝั่งที่อยากใช้ interface
 ```
 
 ## Reference
