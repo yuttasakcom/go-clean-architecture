@@ -83,6 +83,7 @@ func (s *GormStore) Create(todo *Todo) error {
 6. The test easier a bit
 
 *** ให้ Design interface ไปไว้ฝั่งที่อยากใช้ interface
+*** เพิ่ม package แยกขึ้นมาเช่น models หรือ entities
 ```
 
 ## Reference
