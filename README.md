@@ -80,7 +80,7 @@ func (s *GormStore) Create(todo *Todo) error {
 5. Convert Handler to Gin Handler โดยการสร้าง NewGinHandler(handler MyHandlerFunc) แล้วส่งค่ากลับเป็น func(c *gin.Context) {hanlder(&MyContext{Context: c})}
    - gin.HandlerFunc จะคลอบ MyHandlerFunc
    - MyContext จะคลอบ *gin.Context
-ุ6. The test easier a bit
+6. The test easier a bit
 ```
 
 ## Reference
