@@ -46,7 +46,3 @@ Framwork(inbound) --> API --> Domain <-- SPI <-- Infrastructure/External(outboun
 - [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 - [Clean Architecture in Go](https://medium.com/@eminetto/clean-architecture-in-go-4030f11ec1b1)
 - [golang-standards project-layout](https://github.com/golang-standards/project-layout)
-
-```
-
-```
