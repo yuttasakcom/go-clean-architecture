@@ -41,6 +41,48 @@ Framwork(inbound) --> API --> Domain <-- SPI <-- Infrastructure/External(outboun
     todoHandler := todo.NewTodoHandler(todoStore)
 ```
 
+## สร้าง GormStore struct
+
+```go
+package todo
+
+import "gorm.io/gorm"
+
+type GormStore struct {
+	db *gorm.DB
+}
+
+func NewGormStore(db *gorm.DB) *GormStore {
+	return &GormStore{db: db}
+}
+
+func (s *GormStore) Create(todo *Todo) error {
+	return s.db.Create(todo).Error
+}
+```
+
+## จัดการชั้น API
+
+```
+1. Design what we want to use instead of *gin.Context
+  - c.ShouldBindJSON(&todo)
+  - c.Request.Header.Get("TransactionID")
+  - c.Get("aud")
+  - c.JSON(http.StatusBadReques, gin.H{"error": "not allowed"})
+  - c.Bind(&todo)
+  - c.TransactionID()
+  - c.Audience()
+  - c.JSON(http.StatusBadReques, gin.H{"error": "not allowed"})
+2. Design interface
+3. New handler using the new interface
+4. Implement the interface สร้าง MyContext struct โดย composition จาก *gin.Context
+   - composition over inheritance => การเรียก gin context เมื่อต้อง overwrite ให้เรียก gin ผ่าน context เช่น c.context.JSON()
+5. Convert Handler to Gin Handler โดยการสร้าง NewGinHandler(handler MyHandlerFunc) แล้วส่งค่ากลับเป็น func(c *gin.Context) {hanlder(&MyContext{Context: c})}
+   - gin.HandlerFunc จะคลอบ MyHandlerFunc
+   - MyContext จะคลอบ *gin.Context
+ุ6. The test easier a bit
+```
+
 ## Reference
 
 - [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
