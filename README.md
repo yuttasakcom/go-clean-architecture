@@ -86,6 +86,23 @@ func (s *GormStore) Create(todo *Todo) error {
 *** เพิ่ม package แยกขึ้นมาเช่น models หรือ entities
 ```
 
+## สร้าง gin Router
+
+```go
+type MyRouter struct {
+  *gin.Engine
+}
+
+func NewMyRouter() *MyRouter {
+  r := gin.Default()
+  return &MyRouter{r}
+}
+
+func (r *MyRouter) POST(path string, handler func(todo.Context)) {
+  r.Engine.POST(path, NewGinHandler(handler))
+}
+```
+
 ## Reference
 
 - [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
